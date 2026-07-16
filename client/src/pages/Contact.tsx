@@ -9,7 +9,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 // Hide the GHL chat widget on the Contact page (A2P compliance)
 function useHideChatWidget() {
   useEffect(() => {
-    const WIDGET_ID = "6a3d7be3a3d7dca497f3ba3a";
+    const WIDGET_ID = "6a5465e7d166a8719fe23e2c";
     const SELECTORS = [
       `[data-widget-id="${WIDGET_ID}"]`,
       'iframe[src*="leadconnectorhq.com/chat-widget"]',
@@ -148,11 +148,11 @@ export default function Contact() {
                 <p className="text-sm mb-6" style={{ fontFamily: "'Source Sans 3', sans-serif", color: "#5a6b52" }}>
                   Fill out the form below and we will be in touch within one business day.
                 </p>
-                <div style={{ width: "100%", minHeight: "752px" }}>
+                <div style={{ width: "100%", minHeight: "542px" }}>
                   <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/5PNmgvGo3i6xCU5e1XgC"
-                    style={{ width: "100%", height: "752px", border: "none", borderRadius: "25px" }}
-                    id="inline-5PNmgvGo3i6xCU5e1XgC-contact"
+                    src="https://api.leadconnectorhq.com/widget/form/QXKArFhz1Qn4OEbBme4v"
+                    style={{ width: "100%", height: "542px", border: "none", borderRadius: "10px" }}
+                    id="inline-QXKArFhz1Qn4OEbBme4v"
                     data-layout="{'id':'INLINE'}"
                     data-trigger-type="alwaysShow"
                     data-trigger-value=""
@@ -160,11 +160,11 @@ export default function Contact() {
                     data-activation-value=""
                     data-deactivation-type="neverDeactivate"
                     data-deactivation-value=""
-                    data-form-name="A2P Form"
-                    data-height="752"
-                    data-layout-iframe-id="inline-5PNmgvGo3i6xCU5e1XgC-contact"
-                    data-form-id="5PNmgvGo3i6xCU5e1XgC"
-                    title="A2P Form"
+                    data-form-name="Website Form (GFSCPAs)"
+                    data-height="542"
+                    data-layout-iframe-id="inline-QXKArFhz1Qn4OEbBme4v"
+                    data-form-id="QXKArFhz1Qn4OEbBme4v"
+                    title="Website Form (GFSCPAs)"
                   />
                 </div>
               </div>
