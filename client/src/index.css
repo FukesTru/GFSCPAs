@@ -71,7 +71,7 @@
 }
 
 /* Hide GHL chat widget on Contact page (has its own form) */
-body.hide-chat-widget [data-widget-id="6a5465e7d166a8719fe23e2c"],
+body.hide-chat-widget [data-widget-id="6a51f272a8bb1932613a8bdd"],
 body.hide-chat-widget #LeadConnector-chat-widget,
 body.hide-chat-widget .lc-chat-widget,
 body.hide-chat-widget iframe[src*="leadconnectorhq.com/chat-widget"] {

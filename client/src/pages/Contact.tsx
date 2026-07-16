@@ -9,7 +9,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 // Hide the GHL chat widget on the Contact page (A2P compliance)
 function useHideChatWidget() {
   useEffect(() => {
-    const WIDGET_ID = "6a5465e7d166a8719fe23e2c";
+    const WIDGET_ID = "6a51f272a8bb1932613a8bdd";
     const SELECTORS = [
       `[data-widget-id="${WIDGET_ID}"]`,
       'iframe[src*="leadconnectorhq.com/chat-widget"]',
