@@ -64,6 +64,7 @@ function VideoEmbed({ id, title }: { id: string; title: string }) {
       <iframe
         src={`https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&color=white`}
         title={title}
+        loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         style={{
@@ -392,7 +393,7 @@ export default function Testimonials() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <FadeUp delay={80}>
               <div className="relative">
-                <img
+                <img width={1000} height={695} loading="lazy" decoding="async"
                   src="/manus-storage/gutta-tarkenton-photo_6f014453.jpg"
                   alt="Frank Gutta with Fran Tarkenton"
                   style={{
@@ -484,10 +485,10 @@ export default function Testimonials() {
                   </div>
                 </div>
                 <div className="mt-8">
-                  <img
+                  <img width={730} height={150} loading="lazy" decoding="async"
                     src="/manus-storage/tarkenton-financial-logo_5a916abe.jpg"
                     alt="Tarkenton Financial — Authorized Representative"
-                    style={{ height: "52px", objectFit: "contain", opacity: 0.85 }}
+                    style={{ width: "auto", height: "52px", objectFit: "contain", opacity: 0.85 }}
                   />
                 </div>
               </div>

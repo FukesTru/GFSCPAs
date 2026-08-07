@@ -205,7 +205,7 @@ export default function Team() {
                       className="rounded-full overflow-hidden mb-4"
                       style={{ width: "160px", height: "160px", border: "3px solid #eef2eb", boxShadow: "0 4px 16px rgba(45,74,30,0.12)" }}
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={member.photo}
                         alt={member.name}
                         className="w-full h-full object-cover"
@@ -263,7 +263,7 @@ export default function Team() {
                       className="rounded-full overflow-hidden mb-4"
                       style={{ width: "160px", height: "160px", border: "3px solid #eef2eb", boxShadow: "0 4px 16px rgba(45,74,30,0.12)" }}
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={member.photo}
                         alt={member.name}
                         className="w-full h-full object-cover"
@@ -330,7 +330,7 @@ export default function Team() {
                       flexShrink: 0,
                     }}
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={member.photo}
                       alt={member.name}
                       className="w-full h-full object-cover"

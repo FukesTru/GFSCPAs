@@ -150,10 +150,13 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+// The Manus tooling (runtime bridge, JSX source locations, browser log collector) is
+// authoring-time only. Shipping it to production injected a ~360 kB inline <script> into
+// index.html and ~1.3k `data-loc` attributes into the bundle, so it is dev-only.
+const devOnlyPlugins = [jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
-export default defineConfig({
-  plugins,
+export default defineConfig(({ command }) => ({
+  plugins: [react(), tailwindcss(), ...(command === "serve" ? devOnlyPlugins : [])],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -167,6 +170,18 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    target: "es2022",
+    cssCodeSplit: true,
+    reportCompressedSize: false,
+    rollupOptions: {
+      output: {
+        // Keep React and the router in a long-lived chunk so page-level code
+        // splitting does not re-download the framework on every deploy.
+        manualChunks: {
+          react: ["react", "react-dom", "wouter"],
+        },
+      },
+    },
   },
   server: {
     host: true,
@@ -184,4 +199,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

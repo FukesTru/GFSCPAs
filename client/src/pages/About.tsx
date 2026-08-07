@@ -136,7 +136,7 @@ function TeamGrid({ members, label, description }: { members: typeof advisoryTea
                 className="rounded-full overflow-hidden mx-auto mb-4"
                 style={{ width: "140px", height: "140px", border: "3px solid #eef2eb", boxShadow: "0 4px 16px rgba(45,74,30,0.12)" }}
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src={member.photo}
                   alt={member.name}
                   className="w-full h-full object-cover"
@@ -236,7 +236,7 @@ export default function About() {
                       border: "4px solid white",
                     }}
                   >
-                    <img
+                    <img width={345} height={480} loading="lazy" decoding="async"
                       src="/manus-storage/frank-gutta-headshot_bc6ba522.jpg"
                       alt="Frank Gutta, CPA, PFS — GFSCPAs"
                       style={{
@@ -317,7 +317,7 @@ export default function About() {
                       rel="noopener noreferrer"
                       style={{ display: "block" }}
                     >
-                      <img
+                      <img loading="lazy" decoding="async"
                         src="/manus-storage/frank-gutta-book-cover-3d_9a20c70b.png"
                         alt="Your Safe Retirement Roadmap by Frank Gutta, CPA, PFS — Amazon Best Seller"
                         style={{

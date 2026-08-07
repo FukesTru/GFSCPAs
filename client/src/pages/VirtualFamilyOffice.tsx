@@ -66,7 +66,7 @@ export default function VirtualFamilyOffice() {
               </p>
             </div>
             <div>
-              <img
+              <img width={800} height={533} loading="lazy" decoding="async"
                 src="/manus-storage/office_team_e297134b.jpg"
                 alt="Virtual Family Office team coordination"
                 className="rounded-lg w-full object-cover"

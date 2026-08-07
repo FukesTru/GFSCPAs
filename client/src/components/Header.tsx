@@ -79,14 +79,14 @@ export default function Header() {
             {/* Logo — real image asset */}
             <Link href="/" className="flex-shrink-0 flex items-center">
               {scrolled || !isHome ? (
-                <img
+                <img width={2048} height={656} decoding="async" fetchPriority="high"
                   src="/manus-storage/gfscpas-logo-horizontal_f0344bf5.webp"
                   alt="GFSCPAs — Gutta Stewart Ferrer & Schemidt"
                   style={{ height: "58px", width: "auto" }}
                 />
               ) : (
                 /* White version on transparent hero — use brightness filter */
-                <img
+                <img width={2048} height={656} decoding="async" fetchPriority="high"
                   src="/manus-storage/gfscpas-logo-horizontal_f0344bf5.webp"
                   alt="GFSCPAs — Gutta Stewart Ferrer & Schemidt"
                   style={{ height: "58px", width: "auto", filter: "brightness(0) invert(1)" }}

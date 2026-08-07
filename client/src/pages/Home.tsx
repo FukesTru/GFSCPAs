@@ -292,6 +292,7 @@ export default function Home() {
               <iframe
                 src="https://www.youtube.com/embed/rBf5owKLXXA?rel=0&modestbranding=1&color=white"
                 title="Frank Gutta, CPA, PFS — GFSCPAs"
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
@@ -390,7 +391,7 @@ export default function Home() {
             </FadeUp>
             <FadeUp delay={150}>
               <div className="relative">
-                <img
+                <img width={800} height={534} loading="lazy" decoding="async"
                   src="/manus-storage/planning_desk_524d81af.jpg"
                   alt="CPA reviewing financial plan with client"
                   className="rounded-lg w-full object-cover"
@@ -465,7 +466,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <FadeUp>
-              <img
+              <img width={800} height={1200} loading="lazy" decoding="async"
                 src="/manus-storage/diverse_clients_1f8c19a3.jpg"
                 alt="GFSCPAs serving diverse clients"
                 className="rounded-lg w-full object-cover"

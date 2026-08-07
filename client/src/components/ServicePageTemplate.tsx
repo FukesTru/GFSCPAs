@@ -157,7 +157,7 @@ export default function ServicePageTemplate({
                   border: "4px solid white",
                 }}
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src={sectionPhoto}
                   alt={sectionPhotoAlt}
                   style={{ width: "100%", height: "380px", objectFit: "cover", display: "block" }}

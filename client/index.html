@@ -8,16 +8,89 @@
     <meta name="description" content="GFSCPAs provides proactive accounting, tax planning, retirement planning, and business advisory services for individuals, families, and businesses in Weston and South Florida." />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
-    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a51f272a8bb1932613a8bdd" data-source="WEB_USER"></script>
+
+    <!-- The homepage hero is a CSS background, so it is not discoverable by the
+         preload scanner. Preloading it lets the LCP paint start immediately. -->
+    <link rel="preload" as="image" href="/manus-storage/hero_bg_317c54c8.jpg" fetchpriority="high" />
+
+    <!-- Fonts already use display=swap, so text paints in the fallback face either
+         way. Loading the stylesheet asynchronously keeps it off the critical path. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    </noscript>
+
+    <!-- Warm up the LeadConnector origins without downloading anything yet. -->
+    <link rel="preconnect" href="https://link.msgsndr.com" />
+    <link rel="preconnect" href="https://widgets.leadconnectorhq.com" />
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!--
+      LeadConnector form embed + chat widget.
+
+      These used to be render-blocking <script> tags in <head>, which delayed first
+      paint and dominated main-thread blocking time. They are behind neither a
+      feature flag nor user interaction, so they are deferred until the page has
+      loaded and the main thread is idle. Behaviour is unchanged — the inline
+      contact form and the chat bubble still initialise on their own — they just no
+      longer compete with the app's first render.
+    -->
+    <script>
+      (function () {
+        var loaded = false;
+
+        function loadLeadConnector() {
+          if (loaded) return;
+          loaded = true;
+
+          var formEmbed = document.createElement("script");
+          formEmbed.src = "https://link.msgsndr.com/js/form_embed.js";
+          formEmbed.async = true;
+          document.body.appendChild(formEmbed);
+
+          var chatWidget = document.createElement("script");
+          chatWidget.src = "https://widgets.leadconnectorhq.com/loader.js";
+          chatWidget.async = true;
+          chatWidget.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+          chatWidget.setAttribute("data-widget-id", "6a51f272a8bb1932613a8bdd");
+          chatWidget.setAttribute("data-source", "WEB_USER");
+          document.body.appendChild(chatWidget);
+        }
+
+        function scheduleLoad() {
+          // Idle callback where available, with a timeout so the widgets always
+          // arrive on busy pages; a short timer covers browsers without it.
+          if ("requestIdleCallback" in window) {
+            requestIdleCallback(loadLeadConnector, { timeout: 2500 });
+          } else {
+            setTimeout(loadLeadConnector, 1500);
+          }
+        }
+
+        // Load as soon as the user shows intent, whichever comes first.
+        ["pointerdown", "keydown", "touchstart", "scroll"].forEach(function (evt) {
+          window.addEventListener(evt, loadLeadConnector, { once: true, passive: true });
+        });
+
+        if (document.readyState === "complete") {
+          scheduleLoad();
+        } else {
+          window.addEventListener("load", scheduleLoad, { once: true });
+        }
+      })();
+    </script>
   </body>
 
 </html>

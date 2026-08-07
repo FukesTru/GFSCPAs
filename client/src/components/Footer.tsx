@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="mb-5">
-              <img
+              <img width={2048} height={656} loading="lazy" decoding="async"
                 src="/manus-storage/gfscpas-logo-horizontal_f0344bf5.webp"
                 alt="GFSCPAs — Gutta Stewart Ferrer & Schemidt"
                 style={{ height: "38px", width: "auto", filter: "brightness(0) invert(1)", opacity: 0.92 }}

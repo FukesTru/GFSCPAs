@@ -1,48 +1,52 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
+import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
-// Main pages
+// Home is the landing route for most visitors, so it stays in the initial bundle.
+// Every other page is code-split and fetched on navigation.
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Services from "./pages/Services";
-import PlanningProcess from "./pages/PlanningProcess";
-import VirtualFamilyOffice from "./pages/VirtualFamilyOffice";
-import Team from "./pages/Team";
+
+// Main pages
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Services = lazy(() => import("./pages/Services"));
+const PlanningProcess = lazy(() => import("./pages/PlanningProcess"));
+const VirtualFamilyOffice = lazy(() => import("./pages/VirtualFamilyOffice"));
+const Team = lazy(() => import("./pages/Team"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // Service pages
-import AccountingTax from "./pages/services/AccountingTax";
-import TaxPlanning from "./pages/services/TaxPlanning";
-import TaxPreparation from "./pages/services/TaxPreparation";
-import IRSRepresentation from "./pages/services/IRSRepresentation";
-import EstateTrust from "./pages/services/EstateTrust";
-import RetirementPlanning from "./pages/services/RetirementPlanning";
-import FinancialPlanning from "./pages/services/FinancialPlanning";
-import BusinessAdvisory from "./pages/services/BusinessAdvisory";
-import CFOServices from "./pages/services/CFOServices";
-import Payroll from "./pages/services/Payroll";
-import BusinessValuations from "./pages/services/BusinessValuations";
-import EntityStructuring from "./pages/services/EntityStructuring";
-import CashFlow from "./pages/services/CashFlow";
-import SuccessionPlanning from "./pages/services/SuccessionPlanning";
+const AccountingTax = lazy(() => import("./pages/services/AccountingTax"));
+const TaxPlanning = lazy(() => import("./pages/services/TaxPlanning"));
+const TaxPreparation = lazy(() => import("./pages/services/TaxPreparation"));
+const IRSRepresentation = lazy(() => import("./pages/services/IRSRepresentation"));
+const EstateTrust = lazy(() => import("./pages/services/EstateTrust"));
+const RetirementPlanning = lazy(() => import("./pages/services/RetirementPlanning"));
+const FinancialPlanning = lazy(() => import("./pages/services/FinancialPlanning"));
+const BusinessAdvisory = lazy(() => import("./pages/services/BusinessAdvisory"));
+const CFOServices = lazy(() => import("./pages/services/CFOServices"));
+const Payroll = lazy(() => import("./pages/services/Payroll"));
+const BusinessValuations = lazy(() => import("./pages/services/BusinessValuations"));
+const EntityStructuring = lazy(() => import("./pages/services/EntityStructuring"));
+const CashFlow = lazy(() => import("./pages/services/CashFlow"));
+const SuccessionPlanning = lazy(() => import("./pages/services/SuccessionPlanning"));
 
 // Testimonials
-import Testimonials from "./pages/Testimonials";
+const Testimonials = lazy(() => import("./pages/Testimonials"));
 
 // Legal pages
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsConditions from "./pages/TermsConditions";
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsConditions = lazy(() => import("./pages/TermsConditions"));
 
 // City pages
-import Weston from "./pages/cities/Weston";
-import Plantation from "./pages/cities/Plantation";
-import Sunrise from "./pages/cities/Sunrise";
-import Davie from "./pages/cities/Davie";
-import FortLauderdale from "./pages/cities/FortLauderdale";
+const Weston = lazy(() => import("./pages/cities/Weston"));
+const Plantation = lazy(() => import("./pages/cities/Plantation"));
+const Sunrise = lazy(() => import("./pages/cities/Sunrise"));
+const Davie = lazy(() => import("./pages/cities/Davie"));
+const FortLauderdale = lazy(() => import("./pages/cities/FortLauderdale"));
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -98,7 +102,11 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          {/* Route chunks are small and same-origin; an empty fallback avoids a
+              loading flash between pages. */}
+          <Suspense fallback={null}>
+            <Router />
+          </Suspense>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
